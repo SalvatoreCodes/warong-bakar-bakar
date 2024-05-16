@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #f2c293;
+  --paragraph: #675d2c;
+}
+
+body {
+  font-family: "Playfair Display", serif;
+  overflow: hidden;
+}
+
+.app {
+  :not(.navbar, .navbar--logo--wbb) {
+    padding: 16px;
+  }
+  .navbar {
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+    background: rgb(242, 194, 147);
+    background: linear-gradient(
+      180deg,
+      rgba(242, 194, 147, 1) 30%,
+      rgba(204, 166, 127, 1) 89%
+    );
+    align-items: center;
+    color: var(--paragraph);
+    img {
+      object-fit: cover;
+      height: 128px;
+      width: 128px;
+      border-radius: 100%;
+      margin-top: 32px;
+    }
+  }
+  .hero {
+    h1 {
+      font-size: 7rem;
+      color: #ac8d5c;
+      position: relative;
+      z-index: 1;
+    }
+    h2 {
+      width: 65%;
+      color: var(--paragraph);
+      margin-top: -16px;
+    }
+    img {
+      position: absolute;
+      top: 128px;
+      width: 75%;
+      right: 0;
+      margin-right: -48px;
+    }
+  }
+}
