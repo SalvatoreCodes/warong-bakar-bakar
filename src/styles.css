@@ -13,7 +13,7 @@
 
 body {
   font-family: "Playfair Display", serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .app :not(.navbar, .navbar--logo--wbb) {
@@ -37,6 +37,9 @@ body {
   border-radius: 100%;
   margin-top: 32px;
 }
+.app .hero {
+  margin-bottom: 128px;
+}
 .app .hero h1 {
   font-size: 7rem;
   color: #ac8d5c;
@@ -54,4 +57,17 @@ body {
   width: 75%;
   right: 0;
   margin-right: -48px;
+}
+.app .card--container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+.app .card--container .card {
+  height: 312px;
+  width: 412px;
+  background-color: red;
+}
+.app .card--container .card .card--image {
+  height: 75%;
 }/*# sourceMappingURL=styles.css.map */
