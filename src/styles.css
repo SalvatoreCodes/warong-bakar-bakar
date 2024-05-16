@@ -39,6 +39,8 @@ body {
 }
 .app .hero {
   margin-bottom: 128px;
+  height: 65vh;
+  overflow: hidden;
 }
 .app .hero h1 {
   font-size: 7rem;
@@ -57,17 +59,43 @@ body {
   width: 75%;
   right: 0;
   margin-right: -48px;
+  overflow: hidden;
 }
-.app .card--container {
+.app .card-container {
   width: 100vw;
   display: flex;
-  justify-content: center;
+  gap: 16px;
 }
-.app .card--container .card {
-  height: 312px;
-  width: 412px;
-  background-color: red;
+.app .card {
+  background-color: var(--primary);
+  border-radius: 32px;
+  padding: 8px;
+  width: 428px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }
-.app .card--container .card .card--image {
-  height: 75%;
+.app .card .card--image {
+  height: 428px;
+  width: 100%;
+  padding: 0;
+  border-radius: 32px;
+  overflow: hidden;
+}
+.app .card .card--image img {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.app .card .card--information {
+  padding: 16px 0 0 0;
+  color: var(--paragraph);
+  line-height: 1px;
+}
+.app .card .card--information p {
+  display: flex;
+  justify-content: end;
+  font-weight: bold;
 }/*# sourceMappingURL=styles.css.map */
