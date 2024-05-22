@@ -10,7 +10,6 @@ function App() {
       <Hero />
       <div className="card--container">
         <Card />
-        <Card />
       </div>
     </div>
   );

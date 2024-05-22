@@ -16,9 +16,32 @@ body {
   overflow-x: hidden;
 }
 
-.app :not(.navbar, .navbar--logo--wbb) {
-  padding: 16px;
+.card {
+  background-color: var(--primary);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
 }
+.card .card--image {
+  width: 100%;
+  height: 428px;
+}
+.card .card--image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  padding: 0;
+  border-radius: 16px;
+}
+.card .card--information {
+  padding: 16px 8px;
+}
+.card .card--information p {
+  float: right;
+}
+
 .app .navbar {
   height: 10vh;
   width: 100vw;
@@ -40,7 +63,8 @@ body {
 .app .hero {
   margin-bottom: 128px;
   height: 65vh;
-  overflow: hidden;
+  padding: 16px;
+  position: relative;
 }
 .app .hero h1 {
   font-size: 7rem;
@@ -49,53 +73,22 @@ body {
   z-index: 1;
 }
 .app .hero h2 {
-  width: 65%;
+  width: 50%;
   color: var(--paragraph);
   margin-top: -16px;
+  z-index: 100;
 }
 .app .hero img {
   position: absolute;
-  top: 128px;
-  width: 75%;
+  bottom: 0;
+  width: 248px;
   right: 0;
   margin-right: -48px;
   overflow: hidden;
 }
-.app .card-container {
-  width: 100vw;
+.app .card--container {
   display: flex;
   gap: 16px;
-}
-.app .card {
-  background-color: var(--primary);
-  border-radius: 32px;
-  padding: 8px;
-  width: 428px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-}
-.app .card .card--image {
-  height: 428px;
-  width: 100%;
-  padding: 0;
-  border-radius: 32px;
-  overflow: hidden;
-}
-.app .card .card--image img {
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.app .card .card--information {
-  padding: 16px 0 0 0;
-  color: var(--paragraph);
-  line-height: 1px;
-}
-.app .card .card--information p {
-  display: flex;
-  justify-content: end;
-  font-weight: bold;
+  flex-wrap: wrap;
+  justify-content: center;
 }/*# sourceMappingURL=styles.css.map */

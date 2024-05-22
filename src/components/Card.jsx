@@ -1,11 +1,10 @@
 import React from "react";
-import placeholderPicture from "../assets/images/rahang tuna.jpg";
 
-function Card() {
+function Card(props) {
   return (
     <div className="card">
       <div className="card--image">
-        <img src={placeholderPicture} alt="placeholder picture" />
+        <img src={props} alt="placeholder picture" />
       </div>
       <div className="card--information">
         <h3>Rahang Tuna Medium</h3>
