@@ -16,6 +16,74 @@ body {
   overflow-x: hidden;
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  height: 100%;
+  width: 100vw;
+  align-items: center;
+  margin-top: 128px;
+  color: var(--paragraph);
+  overflow: hidden;
+}
+.loading img {
+  height: 248px;
+  width: 248px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 100%;
+}
+.loading .loader {
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+  -webkit-clip-path: inset(0 3ch 0 0);
+          clip-path: inset(0 3ch 0 0);
+  animation: l4 1s steps(4) infinite;
+}
+.loading .loader:before {
+  content: "Loading...";
+}
+@keyframes l4 {
+  to {
+    -webkit-clip-path: inset(0 -1ch 0 0);
+            clip-path: inset(0 -1ch 0 0);
+  }
+}
+
+.dashboard .upload--form {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dashboard .upload--form h1 {
+  margin-bottom: 32px;
+}
+.dashboard .upload--form form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.dashboard .upload--form form input {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background-color: lightgray;
+}
+.dashboard .upload--form form button {
+  padding: 8px;
+  border: none;
+  background-color: var(--primary);
+  color: var(--paragraph);
+  border-radius: 8px;
+  font-size: 32px;
+  cursor: pointer;
+}
+
 .card {
   background-color: var(--primary);
   border-radius: 16px;
@@ -24,8 +92,8 @@ body {
   padding: 8px;
 }
 .card .card--image {
-  width: 100%;
-  height: 428px;
+  width: 248px;
+  height: 248px;
 }
 .card .card--image img {
   width: 100%;
@@ -52,6 +120,10 @@ body {
   align-items: center;
   color: var(--paragraph);
 }
+.app .navbar a {
+  color: var(--paragraph);
+  text-decoration: none;
+}
 .app .navbar img {
   -o-object-fit: cover;
      object-fit: cover;
@@ -61,7 +133,6 @@ body {
   margin-top: 32px;
 }
 .app .hero {
-  margin-bottom: 128px;
   height: 65vh;
   padding: 16px;
   position: relative;
@@ -86,7 +157,24 @@ body {
   margin-right: -48px;
   overflow: hidden;
 }
-.app .card--container {
+.app .menu--list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 32px 0;
+}
+.app .menu--list .card--container--search {
+  width: 75%;
+  margin: 16px;
+  border: none;
+  background-color: var(--primary);
+  padding: 8px 16px;
+  font-size: 1rem;
+}
+.app .menu--list .card--container--search:focus {
+  outline: none;
+}
+.app .menu--list .card--container {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;

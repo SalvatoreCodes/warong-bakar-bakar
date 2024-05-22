@@ -1,12 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo wbb.jfif";
 
 function Navbar() {
   return (
     <div className="navbar">
-      <h1>Login</h1>
+      <Link to={"login"}>
+        <h1>Login</h1>
+      </Link>
       <img src={Logo} alt="logo wbb" className="navbar--logo--wbb" />
-      <h1>Cart</h1>
+      <Link to={"cart"}>
+        <h1>Cart</h1>
+      </Link>
     </div>
   );
 }

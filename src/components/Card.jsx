@@ -2,13 +2,13 @@ import React from "react";
 
 function Card(props) {
   return (
-    <div className="card">
+    <div className="card" key={props.key}>
       <div className="card--image">
-        <img src={props} alt="placeholder picture" />
+        <img src={props.src} alt={props.alt} />
       </div>
       <div className="card--information">
-        <h3>Rahang Tuna Medium</h3>
-        <p>Rp.51,000</p>
+        <h3>{props.name}</h3>
+        <p>Rp.{props.price}</p>
       </div>
     </div>
   );
