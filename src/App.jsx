@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ref as dbRef, onValue } from "firebase/database";
-import { database } from "./firebase";
+import { database } from "./firebase/firebase";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";

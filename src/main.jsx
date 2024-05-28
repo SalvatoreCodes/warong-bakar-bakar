@@ -4,8 +4,10 @@ import App from "./App.jsx";
 import "./styles.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./routes/Dashboard.jsx";
-import Login from "./routes/Login.jsx";
 import Cart from "./routes/Cart.jsx";
+import Login from "./routes/Login.jsx";
+import Signup from "./routes/Signup.jsx";
+import ErrorPopup from "./components/ErrorPopup.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,8 +23,16 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
     path: "/cart",
     element: <Cart />,
+  },
+  {
+    path: "/error--popup",
+    element: <ErrorPopup />,
   },
 ]);
 

@@ -55,6 +55,75 @@ body {
   }
 }
 
+.go--back {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.popup.error {
+  width: 25rem;
+  height: 10rem;
+  margin: 4rem auto;
+  background-color: #fafafa;
+  box-shadow: 2px 2px 1rem #212121;
+  border-radius: 0.25rem;
+  position: absolute;
+  bottom: 0;
+  right: 32px;
+  overflow: hidden;
+}
+.popup.error .message {
+  background-color: #e74c3c;
+  height: 7rem;
+  border-radius: 0.25rem 0.25rem 0 0;
+  overflow: hidden;
+  position: relative;
+  font-size: 0.9rem;
+  padding: 8px;
+}
+.popup.error .message p {
+  padding: 0.5rem;
+  color: #fafafa;
+}
+.popup.error .fa {
+  position: absolute;
+  color: #fafafa;
+  font-size: 10rem;
+  opacity: 0.3;
+  top: -2.5rem;
+  right: -0.5rem;
+}
+.popup.error .action {
+  height: 3rem;
+  line-height: 3rem;
+  width: 100%;
+  position: relative;
+}
+.popup.error .action button {
+  position: absolute;
+  right: 1rem;
+  top: 0.8rem;
+  outline: none;
+  border: 0;
+  background-color: #e74c3c;
+  width: 5rem;
+  height: 1.5rem;
+  color: #fafafa;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.popup.error .action button:hover {
+  background-color: #fafafa;
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+}
+.popup.error .action button:active {
+  background-color: #c0392b;
+}
+
 .dashboard .upload--form {
   padding: 16px;
   display: flex;
@@ -194,4 +263,50 @@ body {
   background-color: var(--black);
   color: var(--primary);
   padding: 16px 32px;
+}
+
+.login--container,
+.signup--container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login--container .login,
+.login--container .signup,
+.signup--container .login,
+.signup--container .signup {
+  background-color: lightgray;
+  border-radius: 32px;
+  height: 50vh;
+  width: 75vw;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.login--container .login h1,
+.login--container .signup h1,
+.signup--container .login h1,
+.signup--container .signup h1 {
+  text-align: center;
+}
+.login--container .login input,
+.login--container .signup input,
+.signup--container .login input,
+.signup--container .signup input {
+  display: flex;
+  width: 100%;
+  height: 64px;
+  padding: 4px 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+.login--container .login button,
+.login--container .signup button,
+.signup--container .login button,
+.signup--container .signup button {
+  width: 100%;
+  height: 64px;
 }/*# sourceMappingURL=styles.css.map */

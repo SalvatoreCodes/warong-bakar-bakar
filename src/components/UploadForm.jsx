@@ -1,4 +1,3 @@
-// src/UploadForm.js
 import React, { useState } from "react";
 import {
   ref as storageRef,
@@ -6,7 +5,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { ref as dbRef, push, set } from "firebase/database";
-import { storage, database } from "../firebase";
+import { storage, database } from "../firebase/firebase";
 
 function UploadForm() {
   const [file, setFile] = useState(null);
