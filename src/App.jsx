@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Card from "./components/Card";
 import Loading from "./components/Loading";
+import Footer from "./components/Footer";
 
 function App() {
   const [data, setData] = useState([]);
@@ -71,6 +72,7 @@ function App() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

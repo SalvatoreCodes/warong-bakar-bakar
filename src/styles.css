@@ -9,6 +9,7 @@
 :root {
   --primary: #f2c293;
   --paragraph: #675d2c;
+  --black: #3c3025;
 }
 
 body {
@@ -90,6 +91,9 @@ body {
   display: flex;
   flex-direction: column;
   padding: 8px;
+  transition: all 0.25s ease-in-out;
+  color: var(--black);
+  cursor: pointer;
 }
 .card .card--image {
   width: 248px;
@@ -108,6 +112,10 @@ body {
 }
 .card .card--information p {
   float: right;
+}
+
+.card:hover {
+  scale: 1.05;
 }
 
 .app .navbar {
@@ -166,10 +174,12 @@ body {
 .app .menu--list .card--container--search {
   width: 75%;
   margin: 16px;
+  margin-bottom: 32px;
   border: none;
   background-color: var(--primary);
-  padding: 8px 16px;
+  padding: 16px 32px;
   font-size: 1rem;
+  border-radius: 16px;
 }
 .app .menu--list .card--container--search:focus {
   outline: none;
@@ -179,4 +189,9 @@ body {
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
+}
+.app footer {
+  background-color: var(--black);
+  color: var(--primary);
+  padding: 16px 32px;
 }/*# sourceMappingURL=styles.css.map */
