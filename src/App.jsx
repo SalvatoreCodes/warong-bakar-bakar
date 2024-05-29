@@ -74,6 +74,7 @@ function App() {
               addToCart={() => addToCart(item)}
               ifCart={false}
               ifAmount={false}
+              ifCardHover={true}
             />
           ))}
         </div>

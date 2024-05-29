@@ -1,30 +1,45 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "./CartContext";
 
-function Card({ src, alt, name, price, addToCart, ifAmount, ifCart }) {
-  const handleClick = () => {
-    addToCart();
-  };
-
+function Card({
+  src,
+  alt,
+  name,
+  price,
+  quantity, // Add quantity as a prop
+  addToCart,
+  removeFromCart,
+  ifAmount,
+  ifCart,
+  ifCardHover,
+}) {
   const { cart, setCart } = useContext(CartContext);
 
-  const { amount, setAmount } = useState(0);
+  const amountHandler = (action) => {
+    if (action === "-" && quantity === 1) {
+      removeFromCart(name); // Call removeFromCart function with item name
+    } else {
+      const updatedCart = cart.map((item) =>
+        item.name === name
+          ? { ...item, quantity: item.quantity + (action === "+" ? 1 : -1) }
+          : item
+      );
+      setCart(updatedCart);
+    }
+  };
 
-  const [displayCart, setDisplayCart] = useState(false);
-  const [displayAmount, setDisplayAmount] = useState(false);
+  const [displayCart, setDisplayCart] = useState(ifCart);
+  const [displayAmount, setDisplayAmount] = useState(ifAmount);
+  const [cardHover, setCardHover] = useState(ifCardHover);
 
   useEffect(() => {
     setDisplayCart(ifCart);
     setDisplayAmount(ifAmount);
-  }, [displayCart, displayAmount]);
-
-  const removeFromCart = () => {
-    const updatedCart = cart.filter((item) => item.name !== name);
-    setCart(updatedCart);
-  };
+    setCardHover(ifCardHover);
+  }, [ifCart, ifAmount, ifCardHover]);
 
   return (
-    <div className="card" onClick={handleClick}>
+    <div className={`card ${cardHover && "card--hover"}`} onClick={addToCart}>
       <div className="card--image">
         <img src={src} alt={alt} />
       </div>
@@ -32,16 +47,18 @@ function Card({ src, alt, name, price, addToCart, ifAmount, ifCart }) {
         <div className="card--information--description">
           <h3>{name}</h3>
           <p>Rp.{price}</p>
-          {displayAmount && <p>x {amount}</p>}
         </div>
-        <div className="card--information--button">
+        <div className="card--information--amount">
           {displayCart && (
-            <button
-              className="card--information--remove"
-              onClick={removeFromCart}
-            >
-              Remove from Cart
-            </button>
+            <div className="amount">
+              <button onClick={() => amountHandler("-")} className="decrement">
+                -
+              </button>
+              <p>{quantity}</p>
+              <button onClick={() => amountHandler("+")} className="increment">
+                +
+              </button>
+            </div>
           )}
         </div>
       </div>

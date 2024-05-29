@@ -18,36 +18,51 @@ body {
   background-color: rgba(242, 194, 147, 0.1);
 }
 
+.card--hover:hover {
+  scale: 1.05;
+  cursor: pointer;
+}
+
 .loading {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  height: 100%;
+  height: 100vh;
   width: 100vw;
-  align-items: center;
-  margin-top: 128px;
   color: var(--paragraph);
   overflow: hidden;
-  img {
-    height: 248px;
-    width: 248px;
-    object-fit: cover;
-    border-radius: 100%;
-  }
-  .loader {
-    width: fit-content;
-    font-weight: bold;
-    font-family: monospace;
-    font-size: 30px;
-    clip-path: inset(0 3ch 0 0);
-    animation: l4 1s steps(4) infinite;
-  }
-  .loader:before {
-    content: "Loading...";
-  }
-  @keyframes l4 {
-    to {
-      clip-path: inset(0 -1ch 0 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(211, 211, 211, 0.5);
+
+  .loading--content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    img {
+      height: 248px;
+      width: 248px;
+      object-fit: cover;
+      border-radius: 100%;
+    }
+    .loader {
+      width: fit-content;
+      font-weight: bold;
+      font-family: monospace;
+      font-size: 30px;
+      clip-path: inset(0 3ch 0 0);
+      animation: l4 1s steps(4) infinite;
+    }
+    .loader:before {
+      content: "Loading...";
+    }
+    @keyframes l4 {
+      to {
+        clip-path: inset(0 -1ch 0 0);
+      }
     }
   }
 }
@@ -200,12 +215,120 @@ body {
   }
 }
 
+.cart {
+  display: flex;
+  justify-content: center;
+  .cart--content {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 64px;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 64px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+
+    .card--container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      h1 {
+      }
+
+      .card {
+        flex-direction: row;
+        height: 128px;
+        margin-top: 16px;
+
+        .card--image {
+          height: 100%;
+          width: 50%;
+          img {
+            height: 100%;
+          }
+        }
+        .card--information {
+          padding: 0 8px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 50%;
+
+          .card--information--description {
+            display: flex;
+            flex-direction: column;
+          }
+
+          p {
+            float: left;
+          }
+
+          .card--information--amount {
+            display: flex;
+            justify-content: end;
+            width: 100%;
+            .amount {
+              display: flex;
+              gap: 8px;
+              float: right;
+              align-items: center;
+              background-color: white;
+              height: 100%;
+              width: 75%;
+              justify-content: space-between;
+
+              p {
+              }
+
+              button {
+                height: 100%;
+                width: 24px;
+                border: none;
+                background-color: #c0392b;
+                color: var(--primary);
+                font-weight: bold;
+                cursor: pointer;
+              }
+
+              button:hover {
+                filter: opacity(0.9);
+              }
+            }
+          }
+        }
+      }
+
+      .card--container--checkout {
+        background-color: var(--black);
+        color: var(--primary);
+        border: none;
+        padding: 16px;
+        margin-top: 8px;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
+      }
+
+      .card--container--checkout:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
 .dashboard {
+  overflow: hidden;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+
   .upload--form {
     padding: 16px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    max-width: 75vw;
+    text-align: center;
 
     h1 {
       margin-bottom: 32px;
@@ -215,6 +338,10 @@ body {
       display: flex;
       flex-direction: column;
       gap: 16px;
+
+      img {
+        height: 100%;
+      }
 
       input {
         padding: 8px;
@@ -243,8 +370,8 @@ body {
   flex-direction: column;
   padding: 8px;
   color: var(--black);
+  transition: all 0.25s ease-in-out;
 
-  cursor: pointer;
   .card--image {
     width: 248px;
     height: 248px;
@@ -258,15 +385,12 @@ body {
   }
   .card--information {
     padding: 16px 8px;
+    width: 248px;
 
     p {
       float: right;
     }
   }
-}
-
-.card:hover {
-  filter: opacity(0.9);
 }
 
 .app {
@@ -344,7 +468,7 @@ body {
 
     .card--container {
       display: flex;
-      gap: 16px;
+      gap: 32px;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -411,76 +535,6 @@ body {
   }
 }
 
-.cart {
-  display: flex;
-  justify-content: center;
-  .cart--content {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 64px;
-    padding: 16px;
-    border-radius: 16px;
-    box-shadow: 0px 0px 64px 4px rgba(0, 0, 0, 0.1);
-    background-color: white;
-
-    .card--container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-
-      h1 {
-      }
-
-      .card {
-        flex-direction: row;
-        height: 128px;
-        margin-top: 16px;
-
-        .card--image {
-          height: 100%;
-          width: 50%;
-          img {
-            height: 100%;
-          }
-        }
-        .card--information {
-          padding: 0 8px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-
-          .card--information--description {
-            display: flex;
-            flex-direction: column;
-          }
-
-          p {
-            float: left;
-          }
-
-          .card--information--button {
-            button {
-              float: right;
-              font-size: 11px;
-              background-color: #c0392b;
-              border: none;
-              padding: 4px;
-              color: var(--primary);
-              border-radius: 4px;
-              cursor: pointer;
-              transition: all 0.25s ease-in-out;
-            }
-            button:hover {
-              background: none;
-              color: #c0392b;
-              border: 1px solid #c0392b;
-              padding-right: -1px;
-            }
-          }
-        }
-      }
-    }
-  }
+.user {
+  padding-top: 128px;
 }

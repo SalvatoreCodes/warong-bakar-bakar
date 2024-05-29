@@ -4,8 +4,10 @@ import Logo from "../assets/images/logo wbb.jfif";
 function Loading() {
   return (
     <div className="loading">
-      <img src={Logo} alt="logo wbb" />
-      <div class="loader"></div>
+      <div className="loading--content">
+        <img src={Logo} alt="logo wbb" />
+        <div class="loader"></div>
+      </div>
     </div>
   );
 }

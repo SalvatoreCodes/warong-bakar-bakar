@@ -7,6 +7,8 @@ import {
 import { ref as dbRef, push, set } from "firebase/database";
 import { storage, database } from "../firebase/firebase";
 
+import Loading from "./Loading";
+
 function UploadForm() {
   const [file, setFile] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
@@ -25,7 +27,31 @@ function UploadForm() {
   };
 
   const handlePriceChange = (e) => {
-    setPrice(e.target.value);
+    // Remove any non-digit characters
+    const rawValue = e.target.value.replace(/\D/g, "");
+
+    // Check if the input is empty or negative
+    if (!rawValue) {
+      setInputValue("");
+      return;
+    }
+
+    // Format the value into IDR currency format
+    const formattedValue = formatIDRCurrency(rawValue);
+
+    // Update the state with the formatted value
+    setPrice(formattedValue);
+  };
+
+  const formatIDRCurrency = (value) => {
+    // Convert the value to a string
+    let stringValue = value.toString();
+
+    // Add dots every 3 digits from the right
+    stringValue = stringValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    // Add 'Rp.' prefix
+    return stringValue;
   };
 
   const handleSubmit = async (e) => {
@@ -88,9 +114,13 @@ function UploadForm() {
           placeholder="Enter price"
           required
         />
-        <button type="submit" disabled={loading}>
-          {loading ? "Uploading..." : "Submit"}
-        </button>
+        {loading ? (
+          <Loading />
+        ) : (
+          <button type="submit" disabled={loading}>
+            Submit
+          </button>
+        )}
       </form>
     </div>
   );
