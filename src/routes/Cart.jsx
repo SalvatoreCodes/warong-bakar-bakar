@@ -14,7 +14,7 @@ function Cart() {
         const userId = getCurrentUser();
         if (userId) {
           const userCartData = await getCartData(userId);
-          setCart(userCartData);
+          setCart(userCartData || []);
         }
       } catch (error) {
         console.error("Error fetching cart data:", error);
