@@ -5,6 +5,7 @@ import { auth, database } from "../firebase/firebase";
 import { ref, set } from "firebase/database";
 
 import ErrorPopup from "../components/ErrorPopup";
+import Back from "../components/Back";
 
 function Signup() {
   const navigate = useNavigate();
@@ -25,7 +26,6 @@ function Signup() {
 
       await updateProfile(user, { displayName: name });
 
-      // Store user data in the Realtime Database
       await set(ref(database, `users/${user.uid}`), {
         displayName: name,
         email: user.email,
@@ -43,12 +43,12 @@ function Signup() {
 
   return (
     <div className="signup--container">
-      <Link className="go--back" to={"/"}>
-        Go back
+      <Link to="/">
+        <Back />
       </Link>
 
       <div className="signup">
-        <h1>Sign up</h1>
+        <h1>Create Account</h1>
         <form noValidate onSubmit={onSubmit}>
           <input
             type="text"

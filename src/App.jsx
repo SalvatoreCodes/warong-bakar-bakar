@@ -15,22 +15,20 @@ function App() {
 
   useEffect(() => {
     const fetchData = () => {
-      setTimeout(() => {
-        const itemsRef = dbRef(database, "items");
-        onValue(
-          itemsRef,
-          (snapshot) => {
-            const data = snapshot.val();
-            const items = data ? Object.values(data) : [];
-            setData(items);
-            setLoading(false);
-          },
-          (error) => {
-            console.error("Error fetching data: ", error);
-            setLoading(false);
-          }
-        );
-      }, 3000);
+      const itemsRef = dbRef(database, "items");
+      onValue(
+        itemsRef,
+        (snapshot) => {
+          const data = snapshot.val();
+          const items = data ? Object.values(data) : [];
+          setData(items);
+          setLoading(false);
+        },
+        (error) => {
+          console.error("Error fetching data: ", error);
+          setLoading(false);
+        }
+      );
     };
 
     fetchData();

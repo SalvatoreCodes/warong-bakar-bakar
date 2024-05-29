@@ -4,40 +4,46 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
 import ErrorPopup from "../components/ErrorPopup";
+import Back from "../components/Back";
 
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const onLogin = (e) => {
+  const onLogin = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        navigate("/home");
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        <ErrorPopup error={errorCode} />;
-      });
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      navigate("/home");
+      console.log(userCredential.user);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const closeErrorPopup = () => {
+    setError("");
   };
 
   return (
     <div className="login--container">
-      <Link className="go--back" to={"/"}>
-        Go back
+      <Link to="/">
+        <Back />
       </Link>
       <div className="login">
-        <h1>Login</h1>
-        <form noValidate>
+        <h1>Welcome Back!</h1>
+        <form noValidate onSubmit={onLogin}>
           <input
-            type="text"
+            type="email"
             required
             placeholder="Email address"
-            onChange={(e) => setLoginInput(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
@@ -45,8 +51,9 @@ function Login() {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={onLogin}>Login</button>
+          <button type="submit">Login</button>
         </form>
+        {error && <ErrorPopup error={error} onClose={closeErrorPopup} />}
         <p>
           No account yet? <Link to={"/signup"}>Sign up</Link>
         </p>
