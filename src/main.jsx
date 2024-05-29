@@ -8,6 +8,8 @@ import Cart from "./routes/Cart.jsx";
 import Login from "./routes/Login.jsx";
 import Signup from "./routes/Signup.jsx";
 import ErrorPopup from "./components/ErrorPopup.jsx";
+import { CartProvider } from "./components/CartContext.jsx";
+import User from "./routes/User.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +36,16 @@ const router = createBrowserRouter([
     path: "/error--popup",
     element: <ErrorPopup />,
   },
+  {
+    path: "/user",
+    element: <User />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
   </React.StrictMode>
 );

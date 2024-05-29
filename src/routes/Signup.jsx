@@ -43,9 +43,7 @@ function Signup() {
 
   return (
     <div className="signup--container">
-      <Link to="/">
-        <Back />
-      </Link>
+      <Back />
 
       <div className="signup">
         <h1>Create Account</h1>

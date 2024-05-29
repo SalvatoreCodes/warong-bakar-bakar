@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
-import { getDatabase, ref, get } from "firebase/database";
+import { getDatabase, ref, get, set } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -19,5 +19,23 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 const database = getDatabase(app);
 const auth = getAuth(app);
+
+export const saveCartData = (userId, cartData) => {
+  const cartRef = ref(database, `users/${userId}/cart`);
+  return set(cartRef, cartData).catch((error) => {
+    console.error("Error saving cart data:", error);
+  });
+};
+
+export const getCartData = async (userId) => {
+  const cartRef = ref(database, `users/${userId}/cart`);
+  const snapshot = await get(cartRef);
+  return snapshot.exists() ? snapshot.val() : [];
+};
+
+export const getCurrentUser = () => {
+  const user = auth.currentUser;
+  return user ? user.uid : null;
+};
 
 export { auth, storage, database };

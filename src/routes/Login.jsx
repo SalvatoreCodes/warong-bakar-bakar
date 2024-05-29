@@ -20,7 +20,7 @@ function Login() {
         email,
         password
       );
-      navigate("/home");
+      navigate("/");
       console.log(userCredential.user);
     } catch (error) {
       setError(error.message);
@@ -33,9 +33,7 @@ function Login() {
 
   return (
     <div className="login--container">
-      <Link to="/">
-        <Back />
-      </Link>
+      <Back />
       <div className="login">
         <h1>Welcome Back!</h1>
         <form noValidate onSubmit={onLogin}>

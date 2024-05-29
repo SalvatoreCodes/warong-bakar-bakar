@@ -15,6 +15,7 @@
 body {
   font-family: "Playfair Display", serif;
   overflow-x: hidden;
+  background-color: rgba(242, 194, 147, 0.1);
 }
 
 .loading {
@@ -241,7 +242,6 @@ body {
   display: flex;
   flex-direction: column;
   padding: 8px;
-  transition: all 0.25s ease-in-out;
   color: var(--black);
 
   cursor: pointer;
@@ -266,7 +266,7 @@ body {
 }
 
 .card:hover {
-  scale: 1.05;
+  filter: opacity(0.9);
 }
 
 .app {
@@ -282,6 +282,7 @@ body {
     );
     align-items: center;
     color: var(--paragraph);
+    font-size: 11px;
 
     a {
       color: var(--paragraph);
@@ -293,11 +294,10 @@ body {
       height: 128px;
       width: 128px;
       border-radius: 100%;
-      margin-top: 32px;
+      margin-top: 2.5rem;
     }
   }
   .hero {
-    height: 65vh;
     padding: 16px;
     position: relative;
     h1 {
@@ -407,6 +407,73 @@ body {
 
     p {
       margin-top: 32px;
+    }
+  }
+}
+
+.cart {
+  display: flex;
+  justify-content: center;
+  .cart--content {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 64px;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 64px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+
+    .card--container {
+      display: flex;
+
+      h1 {
+      }
+
+      .card {
+        flex-direction: row;
+        height: 128px;
+        margin-top: 16px;
+
+        .card--image {
+          height: 100%;
+          width: 50%;
+          img {
+            height: 100%;
+          }
+        }
+        .card--information {
+          padding: 0 8px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          p {
+            float: left;
+          }
+
+          .card--information--button {
+            button {
+              float: right;
+              font-size: 11px;
+              background-color: #c0392b;
+              border: none;
+              padding: 4px;
+              color: var(--primary);
+              border-radius: 4px;
+              cursor: pointer;
+              transition: all 0.25s ease-in-out;
+            }
+            button:hover {
+              background: none;
+              color: #c0392b;
+              border: 1px solid #c0392b;
+              padding-right: -1px;
+            }
+          }
+        }
+      }
     }
   }
 }

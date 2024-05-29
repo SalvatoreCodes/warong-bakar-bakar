@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react";
+// App.jsx
+import React, { useEffect, useState, useContext } from "react";
 import { ref as dbRef, onValue } from "firebase/database";
 import { database } from "./firebase/firebase";
-
+import { CartContext } from "./components/CartContext";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Card from "./components/Card";
 import Loading from "./components/Loading";
 import Footer from "./components/Footer";
 
+import { getCurrentUser } from "./firebase/firebase";
+
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const { cart, setCart, addToCart } = useContext(CartContext);
+  const [user, setUser] = useState(getCurrentUser());
 
   useEffect(() => {
     const fetchData = () => {
@@ -48,7 +53,7 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar />
+      <Navbar user={user} />
       <Hero />
       <div className="menu--list">
         <input
@@ -66,6 +71,8 @@ function App() {
               alt={item.name}
               name={item.name}
               price={item.price}
+              addToCart={() => addToCart(item)}
+              ifCart={false}
             />
           ))}
         </div>

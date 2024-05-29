@@ -4,12 +4,18 @@ import Logo from "../assets/images/logo wbb.jfif";
 
 import { getAuth } from "firebase/auth";
 
-function Navbar() {
+function Navbar({ user }) {
   return (
     <div className="navbar">
-      <Link to={"login"}>
-        <h1>Login</h1>
-      </Link>
+      {user ? (
+        <Link to="/user">
+          <h1>User</h1>
+        </Link>
+      ) : (
+        <Link to={"login"}>
+          <h1>Login</h1>
+        </Link>
+      )}
       <img src={Logo} alt="logo wbb" className="navbar--logo--wbb" />
       <Link to={"cart"}>
         <h1>Cart</h1>
