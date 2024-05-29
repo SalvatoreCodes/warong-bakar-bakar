@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../components/CartContext";
 import Card from "../components/Card"; // Assuming Card component is in the same directory
 import Back from "../components/Back";
-import { getCartData, getCurrentUser } from "../firebase/firebase";
+import { getCurrentUser, getCartData } from "../firebase/firebase";
 
 function Cart() {
   const { cart, setCart } = useContext(CartContext);
@@ -12,19 +12,9 @@ function Cart() {
     const fetchCartData = async () => {
       try {
         const userId = getCurrentUser();
-        console.log("Current User ID:", userId); // Debug statement
-
         if (userId) {
           const userCartData = await getCartData(userId);
-          console.log("Cart Data:", userCartData); // Debug statement
-
-          if (userCartData) {
-            setCart(userCartData);
-          } else {
-            setCart([]); // Set to an empty array if no cart data
-          }
-        } else {
-          console.log("No user is currently logged in.");
+          setCart(userCartData);
         }
       } catch (error) {
         console.error("Error fetching cart data:", error);
