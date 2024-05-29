@@ -400,6 +400,8 @@ body {
 }
 .cart .cart--content .card--container {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 .cart .cart--content .card--container .card {
   flex-direction: row;
@@ -418,6 +420,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.cart .cart--content .card--container .card .card--information .card--information--description {
+  display: flex;
+  flex-direction: column;
 }
 .cart .cart--content .card--container .card .card--information p {
   float: left;

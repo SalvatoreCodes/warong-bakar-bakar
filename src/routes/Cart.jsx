@@ -3,6 +3,7 @@ import { CartContext } from "../components/CartContext";
 import Card from "../components/Card"; // Assuming Card component is in the same directory
 import Back from "../components/Back";
 import { getCurrentUser, getCartData } from "../firebase/firebase";
+import Loading from "../components/Loading";
 
 function Cart() {
   const { cart, setCart } = useContext(CartContext);
@@ -27,7 +28,7 @@ function Cart() {
   }, [setCart]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (
@@ -48,6 +49,7 @@ function Cart() {
                   name={item.name}
                   price={item.price}
                   ifCart={true}
+                  ifAmount={true}
                 />
               ))}
             </div>

@@ -427,6 +427,8 @@ body {
 
     .card--container {
       display: flex;
+      flex-direction: column;
+      gap: 16px;
 
       h1 {
       }
@@ -448,6 +450,11 @@ body {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+
+          .card--information--description {
+            display: flex;
+            flex-direction: column;
+          }
 
           p {
             float: left;

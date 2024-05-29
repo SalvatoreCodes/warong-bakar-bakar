@@ -1,17 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "./CartContext";
 
-function Card({ src, alt, name, price, addToCart, ifCart }) {
+function Card({ src, alt, name, price, addToCart, ifAmount, ifCart }) {
   const handleClick = () => {
     addToCart();
   };
 
   const { cart, setCart } = useContext(CartContext);
-  const [inCart, setInCart] = useState(false);
+
+  const { amount, setAmount } = useState(0);
+
+  const [displayCart, setDisplayCart] = useState(false);
+  const [displayAmount, setDisplayAmount] = useState(false);
 
   useEffect(() => {
-    setInCart(ifCart);
-  }, [ifCart]);
+    setDisplayCart(ifCart);
+    setDisplayAmount(ifAmount);
+  }, [displayCart, displayAmount]);
 
   const removeFromCart = () => {
     const updatedCart = cart.filter((item) => item.name !== name);
@@ -27,9 +32,10 @@ function Card({ src, alt, name, price, addToCart, ifCart }) {
         <div className="card--information--description">
           <h3>{name}</h3>
           <p>Rp.{price}</p>
+          {displayAmount && <p>x {amount}</p>}
         </div>
         <div className="card--information--button">
-          {ifCart && (
+          {displayCart && (
             <button
               className="card--information--remove"
               onClick={removeFromCart}

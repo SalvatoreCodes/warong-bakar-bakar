@@ -73,6 +73,7 @@ function App() {
               price={item.price}
               addToCart={() => addToCart(item)}
               ifCart={false}
+              ifAmount={false}
             />
           ))}
         </div>
