@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { getDatabase, ref, get, set } from "firebase/database";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAmrGxg8hVvEDsQBCEruTylXAcydED_fd4",
@@ -36,6 +36,15 @@ export const getCartData = async (userId) => {
 export const getCurrentUser = () => {
   const user = auth.currentUser;
   return user ? user.uid : null;
+};
+
+export const logout = async () => {
+  try {
+    await signOut(auth);
+    console.log("User logged out successfully");
+  } catch (error) {
+    console.error("Error logging out:", error);
+  }
 };
 
 export { auth, storage, database };

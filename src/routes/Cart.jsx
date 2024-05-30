@@ -8,19 +8,19 @@ import Loading from "../components/Loading";
 function Cart() {
   const { cart, setCart } = useContext(CartContext);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchCartData = async () => {
       try {
         const userId = getCurrentUser();
         if (userId) {
+          setUser(userId);
           const userCartData = await getCartData(userId);
-          // Ensure each item in cart data has a valid quantity
-          const cartWithQuantity = userCartData.map((item) => ({
-            ...item,
-            quantity: item.quantity || 1, // Default quantity to 1 if missing or invalid
-          }));
-          setCart(cartWithQuantity || []);
+          const consolidatedCart = consolidateCartItems(userCartData);
+          setCart(consolidatedCart || []);
+        } else {
+          setUser(null);
         }
       } catch (error) {
         console.error("Error fetching cart data:", error);
@@ -32,21 +32,38 @@ function Cart() {
     fetchCartData();
   }, [setCart]);
 
-  const removeFromCart = (itemName) => {
-    const updatedCart = cart.filter((item) => item.name !== itemName);
+  const consolidateCartItems = (items) => {
+    const itemMap = {};
+
+    items.forEach((item) => {
+      if (itemMap[item.id]) {
+        itemMap[item.id].quantity += item.quantity || 1;
+      } else {
+        itemMap[item.id] = {
+          ...item,
+          quantity: item.quantity || 1,
+        };
+      }
+    });
+
+    return Object.values(itemMap);
+  };
+
+  const removeFromCart = (itemId) => {
+    const updatedCart = cart.filter((item) => item.id !== itemId);
     setCart(updatedCart);
   };
 
-  const handleIncrement = (itemName) => {
+  const handleIncrement = (itemId) => {
     const updatedCart = cart.map((item) =>
-      item.name === itemName ? { ...item, quantity: item.quantity + 1 } : item
+      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
     );
     setCart(updatedCart);
   };
 
-  const handleDecrement = (itemName) => {
+  const handleDecrement = (itemId) => {
     const updatedCart = cart.map((item) =>
-      item.name === itemName && item.quantity > 1
+      item.id === itemId && item.quantity > 1
         ? { ...item, quantity: item.quantity - 1 }
         : item
     );
@@ -54,16 +71,36 @@ function Cart() {
   };
 
   const handleCheckout = () => {
-    const itemAmount = cart.map((item) => {
-      console.log(item.id);
-      console.log(item.name);
-      console.log(item.quantity);
-      console.log(item.price);
-    });
+    const message = cart
+      .map(
+        (item) =>
+          `Item: ${item.name}\nQuantity: ${item.quantity}\nPrice: ${item.price}\n`
+      )
+      .join("\n");
+
+    const whatsappNumber = "0882019028284"; // Replace with your phone number in international format, e.g., "1234567890"
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
   };
 
   if (loading) {
     return <Loading />;
+  }
+
+  if (!user) {
+    return (
+      <div className="cart--container">
+        <div className="cart">
+          <Back />
+          <div className="cart--content">
+            <h1>Cart</h1>
+            <p>You need to log in to view your cart.</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -85,9 +122,9 @@ function Cart() {
                   price={item.price}
                   quantity={item.quantity}
                   addToCart={() => {}}
-                  removeFromCart={() => removeFromCart(item.name)}
-                  handleIncrement={() => handleIncrement(item.name)}
-                  handleDecrement={() => handleDecrement(item.name)}
+                  removeFromCart={() => removeFromCart(item.id)}
+                  handleIncrement={() => handleIncrement(item.id)}
+                  handleDecrement={() => handleDecrement(item.id)}
                   ifCart={true}
                   ifAmount={true}
                   ifCardHover={false}

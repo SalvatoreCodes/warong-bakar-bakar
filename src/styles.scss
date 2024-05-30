@@ -411,6 +411,11 @@ body {
     a {
       color: var(--paragraph);
       text-decoration: none;
+      transition: all 0.1s ease-in-out;
+    }
+
+    a:hover {
+      opacity: 0.75;
     }
 
     img {
@@ -536,5 +541,23 @@ body {
 }
 
 .user {
-  padding-top: 128px;
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+
+  .logout--button {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    background-color: #c0392b;
+    color: var(--primary);
+    padding: 4px 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+  }
+
+  .logout--button:hover {
+    opacity: 0.75;
+  }
 }

@@ -368,6 +368,10 @@ body {
 .app .navbar a {
   color: var(--paragraph);
   text-decoration: none;
+  transition: all 0.1s ease-in-out;
+}
+.app .navbar a:hover {
+  opacity: 0.75;
 }
 .app .navbar img {
   -o-object-fit: cover;
@@ -491,5 +495,21 @@ body {
 }
 
 .user {
-  padding-top: 128px;
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+}
+.user .logout--button {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  background-color: #c0392b;
+  color: var(--primary);
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+.user .logout--button:hover {
+  opacity: 0.75;
 }/*# sourceMappingURL=styles.css.map */
